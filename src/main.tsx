@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import LoginPage from './pages/auth/login/index.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import Routes from "./routes/index.tsx";
+import AuthProvider from "./providers/auth-provider/authProvider.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-createRoot(document.getElementById('root')!).render(
+const queryClient = new QueryClient();
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <LoginPage />
-  </StrictMode>,
-)
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </QueryClientProvider>
+  </StrictMode>
+);
