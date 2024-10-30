@@ -1,14 +1,14 @@
-import axios from "..";
+import api from "..";
 import type { IRemedioResponse } from "../remedio";
 import type { IPrescricaoDto } from "./hooks";
 
 export const PrescricaoApi = {
   getPrescricoes: async () => {
-    const { data } = await axios.get<IPrescricaoResponse[]>("/prescricao");
+    const { data } = await api.get<IPrescricaoResponse[]>("/prescricao");
     return data;
   },
   createPrescricao: async (dto: IPrescricaoDto) => {
-    const { data } = await axios.post("/prescricao", dto);
+    const { data } = await api.post("/prescricao", dto);
     return data;
   }
 };

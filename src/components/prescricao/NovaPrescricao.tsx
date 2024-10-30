@@ -34,7 +34,7 @@ export interface IPrescricaoFormData {
   observacao: string;
   dataInicio: Date;
   dataFim: Date;
-  frequencia: string;
+  frequencia: number;
 }
 
 export function NovaPrescricaoModal({
@@ -201,6 +201,7 @@ export function NovaPrescricaoModal({
               </Label>
               <Input
                 id="frequency"
+                type="number"
                 className="col-span-3"
                 {...register("frequencia", {
                   required: "Frequência é obrigatória",

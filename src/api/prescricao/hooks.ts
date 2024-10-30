@@ -17,7 +17,7 @@ export const useCreatePrescricao = () => {
 export interface IPrescricaoDto {
   observacao: string;
   id_remedio: number;
-  frequencia: string;
+  frequencia: number;
   dt_inicio: Date;
   dt_fim: Date | null;
 }

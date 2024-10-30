@@ -42,8 +42,6 @@ export default function Prescricao() {
     name: remedio.nome,
   }));
 
-  console.log('remediosOptions -> ', remediosOptions);
-
   const handleCriarNovaPrescricao = async (formData: IPrescricaoFormData) => {
     const dto = {
       observacao: formData.observacao,
@@ -95,11 +93,12 @@ export default function Prescricao() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Paciente</TableHead>
+              <TableHead>Id</TableHead>
               <TableHead>Medicamento</TableHead>
               <TableHead>Dosagem</TableHead>
               <TableHead>Frequência</TableHead>
-              <TableHead>Data</TableHead>
+              <TableHead>Data Inicio</TableHead>
+              <TableHead>Data Fim</TableHead>
               <TableHead>Ações</TableHead>
             </TableRow>
           </TableHeader>

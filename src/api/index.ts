@@ -6,7 +6,7 @@ const serverUrl = 'http://localhost:3000';
 
 export const baseURL = `${serverUrl}`;
 
-const axios = Axios.create({
+const api = Axios.create({
   baseURL: baseURL,
   timeout: 120000,
   headers: {
@@ -14,7 +14,7 @@ const axios = Axios.create({
   },
 });
 
-axios.interceptors.request.use(
+api.interceptors.request.use(
   async function (config) {
     const token = localStorage.getItem('token');
     if (token && config.headers) {
@@ -27,7 +27,7 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
+api.interceptors.response.use(
   (res) => {
     return res;
   },
@@ -44,4 +44,4 @@ axios.interceptors.response.use(
   }
 );
 
-export default axios;
+export default api;
