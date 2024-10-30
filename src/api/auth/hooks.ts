@@ -9,17 +9,11 @@ export const useLogin = () => {
 
 export interface ILoginPayload {
   email: string;
-  password: string;
+  senha: string;
 }
 
-export const useRegister = () => {
+export const useLogout = () => {
   return useMutation({
-    mutationFn: (payload: IRegisterPayload) => AuthApi.register(payload),
+    mutationFn: () => AuthApi.logout(),
   });
 };
-
-export interface IRegisterPayload {
-  name: string;
-  email: string;
-  password: string;
-}

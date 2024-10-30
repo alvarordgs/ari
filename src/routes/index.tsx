@@ -1,28 +1,44 @@
-import LoginPage from "@/pages/auth/login";
-import { ProtectedRoute } from "./ProtectedRoute";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
+import { ProtectedRoute } from "./ProtectedRoute";
+import Layout from "@/components/layout";
+import PrescricaoPage from "@/pages/prescricao";
+import RemedioPage from "@/pages/remedio";
 
 const Routes = () => {
   const routesForPublic = [
     {
-      path: '/',
+      path: "/",
       element: <LoginPage />,
     },
     {
-      path: '/register',
+      path: "/register",
       element: <RegisterPage />,
     },
   ];
 
   const routesForAuthenticatedOnly = [
     {
-      path: '/',
+      path: "/",
       element: <ProtectedRoute />,
       children: [
         {
-          path: '/teste',
-          element: <div></div>,
+          element: <Layout />,
+          children: [
+            {
+              path: "/prescricoes",
+              element: <PrescricaoPage />,
+            },
+            {
+              path: "/remedios",
+              element: <RemedioPage />,
+            },
+            {
+              path: "/perfil",
+              element: <div>Perfil</div>,
+            },
+          ],
         },
       ],
     },
