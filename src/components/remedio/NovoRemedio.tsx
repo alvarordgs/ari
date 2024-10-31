@@ -51,6 +51,7 @@ export function NovoRemedioModal({
               <Input
                 id="nome"
                 className="col-span-3"
+                placeholder="Nome do remédio"
                 {...register("nome", { required: "Nome é obrigatório" })}
               />
               {errors.nome && (
@@ -66,6 +67,7 @@ export function NovoRemedioModal({
               <Textarea
                 id="funcao"
                 className="col-span-3"
+                placeholder="Função do remédio"
                 {...register("funcao", { required: "Função é obrigatória" })}
               />
               {errors.funcao && (
@@ -82,6 +84,7 @@ export function NovoRemedioModal({
                 id="dosagem"
                 type="number"
                 className="col-span-3"
+                placeholder="Em miligrama"
                 {...register("dosagem", { required: "Dosagem é obrigatória" })}
               />
               {errors.dosagem && (

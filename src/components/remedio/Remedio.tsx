@@ -26,6 +26,7 @@ export default function Remedio() {
     data: remedios,
     isPending: isPendingRemedios,
     isError: isErrorRemedios,
+    refetch: refetchRemedios,
   } = useGetRemedios();
 
   const { mutateAsync: novoRemedio } = useCreateRemedio();
@@ -44,6 +45,7 @@ export default function Remedio() {
         description: "O remédio foi criado com sucesso!",
       });
       setIsNovoRemedioModalOpen(false);
+      refetchRemedios();
     } catch (e) {
       toast({
         title: "Erro ao criar remédio",
@@ -74,7 +76,7 @@ export default function Remedio() {
               <TableRow>
                 <TableHead>Nome</TableHead>
                 <TableHead>Função</TableHead>
-                <TableHead>Dosagem</TableHead>
+                <TableHead>Dosagem&#40;mg&#41;</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Ações</TableHead>
               </TableRow>

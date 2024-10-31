@@ -29,6 +29,7 @@ export default function Prescricao() {
     data: presricoes,
     isPending: isPendingPrescricoes,
     isError: isErrorPrescricoes,
+    refetch: refetchPrescricoes,
   } = useGetPrescricoes();
 
   const {
@@ -58,6 +59,7 @@ export default function Prescricao() {
         description: "A prescrição foi criada com sucesso!",
       });
       setIsNovaPrescricaoModalOpen(false);
+      refetchPrescricoes();
     } catch (e) {
       toast({
         title: "Erro ao criar prescrição",
@@ -95,7 +97,7 @@ export default function Prescricao() {
             <TableRow>
               <TableHead>Id</TableHead>
               <TableHead>Medicamento</TableHead>
-              <TableHead>Dosagem</TableHead>
+              <TableHead>Dosagem&#40;mg&#41;</TableHead>
               <TableHead>Frequência</TableHead>
               <TableHead>Data Inicio</TableHead>
               <TableHead>Data Fim</TableHead>
@@ -111,11 +113,11 @@ export default function Prescricao() {
                   <TableCell>{prescricao.remedio.dosagem}</TableCell>
                   <TableCell>{prescricao.frequencia}</TableCell>
                   <TableCell>
-                    {new Date(prescricao.data_inicio).toLocaleDateString()}
+                    {new Date(prescricao.dt_inicio).toLocaleDateString("pt-BR")}
                   </TableCell>
                   <TableCell>
-                    {prescricao.data_fim
-                      ? new Date(prescricao.data_fim).toLocaleDateString()
+                    {prescricao.dt_fim
+                      ? new Date(prescricao.dt_fim).toLocaleDateString("pt-BR")
                       : "Indefinido"}
                   </TableCell>
                   <TableCell>
