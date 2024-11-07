@@ -135,7 +135,7 @@ export default function Register() {
                   <button
                     onClick={() => setShowPassword(!showPassword)}
                     type="button"
-                    className="rounded-md hover:text-green-300 p-2 text-xs transition-all ease-in-out text-green-400 font-medium absolute inset-y-0 end-1"
+                    className="rounded-md hover:text-gray-800 p-2 text-xs transition-all ease-in-out text-primary font-medium absolute inset-y-0 end-1"
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
@@ -173,7 +173,7 @@ export default function Register() {
                   <button
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     type="button"
-                    className="rounded-md hover:text-green-300 p-2 text-xs transition-all ease-in-out text-green-400 font-medium absolute inset-y-0 end-1"
+                    className="rounded-md hover:text-gray-800 p-2 text-xs transition-all ease-in-out text-primary font-medium absolute inset-y-0 end-1"
                   >
                     {showConfirmPassword ? "Hide" : "Show"}
                   </button>

@@ -6,12 +6,14 @@ import {
   BriefcaseMedicalIcon,
   LogOutIcon,
   MenuIcon,
+  CalendarIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLogout } from "@/api/auth/hooks";
 import { useToast } from "@/hooks/use-toast";
 
 const menuItems = [
+  { path: "/calendar", icon: CalendarIcon, label: "Calendário" },
   { path: "/prescricoes", icon: LayoutDashboardIcon, label: "Prescrições" },
   { path: "/remedios", icon: BriefcaseMedicalIcon, label: "Remédios" },
   { path: "/perfil", icon: UserIcon, label: "Perfil" },
