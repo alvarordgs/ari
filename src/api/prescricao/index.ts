@@ -10,7 +10,18 @@ export const PrescricaoApi = {
   createPrescricao: async (dto: IPrescricaoDto) => {
     const { data } = await api.post("/prescricao", dto);
     return data;
-  }
+  },
+  getPrescricoesPorData: async (date: string | undefined) => {
+    const { data } = await api.get<IPrescricaoResponse[]>(
+      `/prescricao/pesquisar/data`,
+      {
+        params: {
+          dataAtual: date,
+        },
+      }
+    );
+    return data;
+  },
 };
 
 interface IPrescricaoResponse {

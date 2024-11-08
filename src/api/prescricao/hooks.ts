@@ -14,6 +14,14 @@ export const useCreatePrescricao = () => {
   })
 }
 
+export const useGetPrescricoesPorData = (date: string | undefined) => {
+  return useQuery({
+    queryKey: ["prescricoes-por-data", date],
+    queryFn: () => PrescricaoApi.getPrescricoesPorData(date),
+    enabled: !!date,
+  })
+}
+
 export interface IPrescricaoDto {
   observacao: string;
   id_remedio: number;
