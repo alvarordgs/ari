@@ -1,15 +1,9 @@
-import { useForm } from "react-hook-form";
 import { Calendar } from "../ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { format } from "date-fns";
 import { useGetPrescricoesPorData } from "@/api/prescricao/hooks";
-
-const calendarSchema = z.object({
-  calendar: z.date(),
-});
+import { Separator } from "../ui/separator";
 
 export default function CalendarMedicine() {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -17,13 +11,6 @@ export default function CalendarMedicine() {
   const { data: prescricoes } = useGetPrescricoesPorData(
     date ? format(date, "yyyy-MM-dd") : undefined
   );
-
-  const form = useForm({
-    resolver: zodResolver(calendarSchema),
-    defaultValues: {
-      calendar: new Date(),
-    },
-  });
 
   return (
     <Card className="w-full">
@@ -38,7 +25,6 @@ export default function CalendarMedicine() {
               selected={date}
               onSelect={setDate}
               className="rounded-md border"
-              {...form.register("calendar")}
             />
           </form>
           <div>
@@ -49,13 +35,14 @@ export default function CalendarMedicine() {
             ) : (
               <p>...</p>
             )}
+            <Separator className="my-2"/>
             <p>Prescrições:</p>
             {
               prescricoes && prescricoes.length > 0 ? (
                 <ul>
                   {prescricoes.map((prescricao) => (
                     <li key={prescricao.id}>
-                      {prescricao.id}. {prescricao.remedio.nome} - Tomar {prescricao.frequencia} vezes ao dia
+                      <p>{prescricao.id}. {prescricao.remedio.nome} - Tomar {prescricao.frequencia} vezes ao dia</p>
                     </li>
                   ))}
                 </ul>

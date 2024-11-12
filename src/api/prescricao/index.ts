@@ -28,8 +28,13 @@ interface IPrescricaoResponse {
   id: number;
   observacao: string;
   remedio: IRemedioResponse;
+  historico: IHistoricoResponse[];
   frequencia: string;
-  dt_inicio: Date;
-  dt_fim: Date;
+  status: boolean;
+}
+
+export interface IHistoricoResponse {
+  id: number;
+  dt_atual: Date;
   status: boolean;
 }
