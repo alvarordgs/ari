@@ -4,8 +4,10 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { useGetPrescricoesPorData } from "@/api/prescricao/hooks";
 import { Separator } from "../ui/separator";
+import { Pill, Terminal } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
-export default function CalendarMedicine() {
+export default function CalendarioRemedios() {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   const { data: prescricoes } = useGetPrescricoesPorData(
@@ -27,7 +29,7 @@ export default function CalendarMedicine() {
               className="rounded-md border"
             />
           </form>
-          <div>
+          <div className="w-full">
             {date ? (
               <h2 className="text-2xl font-semibold transition-all ease-in-out">
                 {format(date, "dd/MM/yyyy")}
@@ -35,19 +37,23 @@ export default function CalendarMedicine() {
             ) : (
               <p>...</p>
             )}
-            <Separator className="my-2"/>
-            <p>Prescrições:</p>
-            {
-              prescricoes && prescricoes.length > 0 ? (
-                <ul>
-                  {prescricoes.map((prescricao) => (
-                    <li key={prescricao.id}>
-                      <p>{prescricao.id}. {prescricao.remedio.nome} - Tomar {prescricao.frequencia} vezes ao dia</p>
-                    </li>
-                  ))}
-                </ul>
-              ) : (<p>Não tem nenhum remédio para tomar nessa data.</p>)
-            }
+            <Separator className="my-2" />
+            <h2 className="text-lg font-semibold mb-4">Prescrições:</h2>
+            {prescricoes && prescricoes.length > 0 ? (
+              <ul>
+                {prescricoes.map((prescricao) => (
+                  <Alert key={prescricao.id}>
+                    <Pill className="h-4 w-4" />
+                    <AlertTitle>{prescricao.remedio.nome}</AlertTitle>
+                    <AlertDescription>
+                      <p>Tomar {prescricao.frequencia} vezes ao dia</p>
+                    </AlertDescription>
+                  </Alert>
+                ))}
+              </ul>
+            ) : (
+              <p>Não tem nenhum remédio para tomar nessa data.</p>
+            )}
           </div>
         </div>
       </CardContent>

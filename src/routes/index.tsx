@@ -5,7 +5,8 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import Layout from "@/components/layout";
 import PrescricaoPage from "@/pages/prescricao";
 import RemedioPage from "@/pages/remedio";
-import CalendarPage from "@/pages/calendar";
+import CalendarioPage from "@/pages/calendario";
+import PerfilPage from "@/pages/perfil";
 
 const Routes = () => {
   const routesForPublic = [
@@ -28,8 +29,8 @@ const Routes = () => {
           element: <Layout />,
           children: [
             {
-              path: "/calendar",
-              element: <CalendarPage />,
+              path: "/calendario",
+              element: <CalendarioPage />,
             },
             {
               path: "/prescricoes",
@@ -41,7 +42,7 @@ const Routes = () => {
             },
             {
               path: "/perfil",
-              element: <div>Perfil</div>,
+              element: <PerfilPage />,
             },
           ],
         },

@@ -29,6 +29,8 @@ interface IPrescricaoResponse {
   observacao: string;
   remedio: IRemedioResponse;
   historico: IHistoricoResponse[];
+  dt_inicio: Date;
+  dt_fim: Date;
   frequencia: string;
   status: boolean;
 }

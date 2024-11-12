@@ -13,7 +13,7 @@ import { useLogout } from "@/api/auth/hooks";
 import { useToast } from "@/hooks/use-toast";
 
 const menuItems = [
-  { path: "/calendar", icon: CalendarIcon, label: "Calendário" },
+  { path: "/calendario", icon: CalendarIcon, label: "Calendário" },
   { path: "/prescricoes", icon: LayoutDashboardIcon, label: "Prescrições" },
   { path: "/remedios", icon: BriefcaseMedicalIcon, label: "Remédios" },
   { path: "/perfil", icon: UserIcon, label: "Perfil" },
