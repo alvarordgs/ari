@@ -7,6 +7,12 @@ export const PrescricaoApi = {
     const { data } = await api.get<IPrescricaoResponse[]>("/prescricao");
     return data;
   },
+  getPrescricaoById: async (prescricaoId: number) => {
+    const { data } = await api.get<IPrescricaoResponse>(
+      `/prescricao/${prescricaoId}`
+    );
+    return data;
+  },
   createPrescricao: async (dto: IPrescricaoDto) => {
     const { data } = await api.post("/prescricao", dto);
     return data;
@@ -22,16 +28,24 @@ export const PrescricaoApi = {
     );
     return data;
   },
+  editPrescricao: async (idPrescricao: number, dto: IPrescricaoDto) => {
+    const { data } = await api.patch(`/prescricao/${idPrescricao}`, dto);
+    return data;
+  },
+  deletePrescricao: async (idPrescricao: number) => {
+    const { data } = await api.delete(`/prescricao/${idPrescricao}`);
+    return data;
+  }
 };
 
-interface IPrescricaoResponse {
+export interface IPrescricaoResponse {
   id: number;
   observacao: string;
   remedio: IRemedioResponse;
   historico: IHistoricoResponse[];
   dt_inicio: Date;
   dt_fim: Date;
-  frequencia: string;
+  frequencia: number;
   status: boolean;
 }
 

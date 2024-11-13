@@ -1,4 +1,4 @@
-import { PlusIcon, PencilIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,10 +13,13 @@ import { useState } from "react";
 import { NovoRemedioModal } from "./NovoRemedio";
 import {
   useCreateRemedio,
+  useDeleteRemedio,
   useGetRemedios,
   type IRemedioDto,
 } from "@/api/remedio/hooks";
 import { useToast } from "@/hooks/use-toast";
+import EditarRemedio from "./EditarRemedio";
+import DeletarItemAlert from "../DeletarItemAlert";
 
 export default function Remedio() {
   const [isNovoRemedioModalOpen, setIsNovoRemedioModalOpen] = useState(false);
@@ -27,9 +30,11 @@ export default function Remedio() {
     isPending: isPendingRemedios,
     isError: isErrorRemedios,
     refetch: refetchRemedios,
-  } = useGetRemedios();
+  } = useGetRemedios(true);
 
   const { mutateAsync: novoRemedio } = useCreateRemedio();
+
+  const { mutateAsync: deletarRemedio } = useDeleteRemedio();
 
   const handleCriaNovoRemedio = async (formData: IRemedioDto) => {
     try {
@@ -54,6 +59,23 @@ export default function Remedio() {
       console.error(e);
     }
   };
+
+  async function onDeleteRemedio(id: number) {
+    try {
+      await deletarRemedio(id);
+      toast({
+        title: "Remédio deletado com sucesso",
+        description: "O remédio foi deletado com sucesso!",
+      });
+      refetchRemedios();
+    } catch (e) {
+      toast({
+        title: "Erro ao deletar remédio",
+        description: "Ocorreu um erro ao deletar o remédio, tente novamente!",
+      });
+      console.error(e);
+    }
+  }
 
   return (
     <Card className="w-full">
@@ -92,13 +114,13 @@ export default function Remedio() {
                       {remedio.status ? "Em estoque" : "Em falta"}
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="ghost"
-                        onClick={() => console.log("Editar")}
-                      >
-                        <PencilIcon className="h-4 w-4" />
-                        <span className="sr-only">Editar</span>
-                      </Button>
+                      <EditarRemedio
+                        refetchRemedios={refetchRemedios}
+                        remedio={remedio}
+                      />
+                      <DeletarItemAlert
+                        onConfirm={() => onDeleteRemedio(remedio.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}

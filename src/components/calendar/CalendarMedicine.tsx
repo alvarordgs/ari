@@ -4,7 +4,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { useGetPrescricoesPorData } from "@/api/prescricao/hooks";
 import { Separator } from "../ui/separator";
-import { Pill, Terminal } from "lucide-react";
+import { Pill } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 
 export default function CalendarioRemedios() {
